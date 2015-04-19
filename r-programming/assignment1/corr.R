@@ -40,5 +40,5 @@ corr <- function(directory, threshold = 0) {
             correlations <- c(correlations, cor(pollutant.dataset$sulfate, pollutant.dataset$nitrate) ) 
         }      
     }  
-    return(round(correlations, digits = 5))
+    return(round(correlations, digits = 4))
 }
