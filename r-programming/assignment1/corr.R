@@ -17,6 +17,28 @@ corr <- function(directory, threshold = 0) {
     # Returns:
     # Numeric vector of correlations for the monitors that meet the threshold requirement. 
     # If no monitors meet the threshold requirement, the function returns a numeric vector of length 0
-
     
+    
+    # begin ----------------------------------------------------- 
+    
+    # initialize vector
+    correlations <- numeric(0)
+    
+    # read entire file list (monitors) from 'directory' into character vector 
+    monitors.list <- list.files(directory)
+    
+    
+    # read all monitors and total of complete cases and
+    # adds to complete.oberservations vector 
+    
+    for (filename in monitors.list) {   
+        monitor.file <- paste(directory,"/", filename, sep = '')
+        pollutant.dataset <- read.csv(monitor.file)
+        pollutant.dataset <- pollutant.dataset[complete.cases(pollutant.dataset), ]
+        
+        if ( nrow(pollutant.dataset) > threshold ) {            
+            correlations <- c(correlations, cor(pollutant.dataset$sulfate, pollutant.dataset$nitrate) ) 
+        }      
+    }  
+    return(round(correlations, digits = 5))
 }
