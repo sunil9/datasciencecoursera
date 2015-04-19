@@ -28,8 +28,8 @@ pollutantmean <- function(directory, pollutant, id = 1:332) {
     
     # read monitors subset into pollutant dataset
     if(length(monitors.subset) >= 1) {
-        for (x in monitors.subset) {   
-            monitor.file <- paste(directory,"/", x, sep = '')
+        for (file.csv in monitors.subset) {   
+            monitor.file <- paste(directory,"/", file.csv, sep = '')
            pollutant.dataset <- rbind(pollutant.dataset, read.csv(monitor.file))
         } 
         
