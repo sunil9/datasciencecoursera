@@ -1,25 +1,24 @@
-# header ------------------------------------------------------------------
+# header ----------------------------------------------------------------------
 # Course: R Programming
 # Assignment:1 - Air Pollution, Part1 - Pollutant Mean 
 # Author: Sunil Pereira
 # Created Date: April 19, 2015
 
+# pollutantmean() -------------------------------------------------------------
+# Calculates the mean of a pollutant (sulfate or nitrate) across a specified list of monitors
+# Args:
+#   directory: character vector of length 1 indicating
+#              the location of the CSV files
+#   pollutant: character vector of length 1 indicating
+#              the name of the pollutant for which we will 
+#              calculate the mean; either "sulfate" or "nitrate".
+#    id: integer vector indicating the monitor ID numbers to be used
+#
+# Returns:
+# The mean of the pollutant across all monitors list in the 'id' vector (ignoring NA values)
+
 pollutantmean <- function(directory, pollutant, id = 1:332) {
-    # Calculates the mean of a pollutant (sulfate or nitrate) across a specified list of monitors
-    # Args:
-    #   directory: character vector of length 1 indicating
-    #              the location of the CSV files
-    #   pollutant: character vector of length 1 indicating
-    #              the name of the pollutant for which we will 
-    #              calculate the mean; either "sulfate" or "nitrate".
-    #    id: integer vector indicating the monitor ID numbers to be used
-    #
-    # Returns:
-    # The mean of the pollutant across all monitors list in the 'id' vector (ignoring NA values)
-    
-    # begin ----------------------------------------------------- 
-    
-    # check if argument 'id' is is valid numeric range and not character 
+      # check if argument 'id' is is valid numeric range and not character 
     pollutant.vector <- c("sulfate","nitrate")
     if (id < 1 || id > 332 || !is.numeric(id) || is.na(match(pollutant,pollutant.vector))) {
         print("Error: invalid argument type")
